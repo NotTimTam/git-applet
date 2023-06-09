@@ -1,0 +1,14 @@
+{
+	"name": "git-docs",
+	"version": "1.0.0",
+	"description": "A documentation applet that handles interaction with a git repository.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"git-docs is functioning properly!\" && exit 1"
+	},
+	"author": "NotTimTam",
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^1.4.0"
+	}
+}
