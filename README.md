@@ -1,6 +1,6 @@
 # git-applet
 
-A bare-bones applet that handles basic git commands on common git-hosting platforms.
+A bare-bones applet that handles basic Git commands on common Git-hosting platforms.
 
 # Documentation
 
