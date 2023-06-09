@@ -109,7 +109,6 @@ class GitHandler {
 	 * @param {boolean} overwrite Set to `true` to overwrite existing files.
 	 * @param {string} message An optional message to attach to the commit.
 	 * @returns {Promise<void>} A Promise that resolves when the file is created successfully.
-	 * @throws {Error} If there was an error creating the file.
 	 */
 	commitFileAndPush = async (
 		filePath,
@@ -148,7 +147,6 @@ class GitHandler {
 	 * Checks if a file exists in the Git repository.
 	 * @param {string} filePath The path of the file to check.
 	 * @returns {Promise<FileCheckResult>} A Promise that resolves with the result of the file check.
-	 * @throws {Error} If there was an error checking the file.
 	 */
 	doesFileExist = async (filePath) => {
 		try {
@@ -173,7 +171,6 @@ class GitHandler {
 	 * Retrieves the contents of a file from the Git repository.
 	 * @param {string} filePath The path of the file to retrieve.
 	 * @returns {Promise<string>} A Promise that resolves with the contents of the file.
-	 * @throws {Error} If there was an error retrieving the file.
 	 */
 	getFileContents = async (filePath) => {
 		try {
@@ -200,7 +197,6 @@ class GitHandler {
 	 * @param {string} filePath The path of the file to delete.
 	 * @param {string} message An optional message to attach to the commit.
 	 * @returns {Promise<void>} A Promise that resolves when the file is deleted successfully.
-	 * @throws {Error} If there was an error deleting the file.
 	 */
 	deleteFile = async (filePath, message = "Deleted file.") => {
 		try {
@@ -220,7 +216,7 @@ class GitHandler {
 			await this.apiRequest(apiUrl, "DELETE", data);
 			console.log(`File at path "${filePath}" deleted.`);
 		} catch (err) {
-			console.error("Error deleting file:", err);
+			this.errorHandler("Error deleting file:", err);
 		}
 	};
 
@@ -230,7 +226,6 @@ class GitHandler {
 	 * @param {string} newPath The new path for the file.
 	 * @param {string} message An optional message to attach to the commit.
 	 * @returns {Promise<void>} A Promise that resolves when the file is renamed successfully.
-	 * @throws {Error} If there was an error renaming the file.
 	 */
 	renameFile = async (filePath, newPath, message = "Renamed file.") => {
 		try {
@@ -258,7 +253,35 @@ class GitHandler {
 
 			console.log(`"${filePath}" is now "${newPath}"`);
 		} catch (err) {
-			console.error("Error renaming file:", err);
+			this.errorHandler("Error renaming file:", err);
+		}
+	};
+
+	/**
+	 * Lists the file tree of the Git repository recursively.
+	 * @param {string} [path] The path of the directory to list the file tree. (optional, defaults to the root directory)
+	 * @returns {Promise<FileTreeNode>} A Promise that resolves with the file tree.
+	 */
+	listFileTree = async (path = "") => {
+		try {
+			const { repositoryURL } = this;
+			const apiUrl = `${repositoryURL}/contents/${path}`;
+
+			const fileTree = await this.apiRequest(apiUrl, "GET");
+
+			const fileTreeNodes = await Promise.all(
+				fileTree.map(async (item) => {
+					if (item.type === "dir") {
+						const children = await this.listFileTree(item.path);
+						return { ...item, children };
+					}
+					return item;
+				})
+			);
+
+			return fileTreeNodes;
+		} catch (err) {
+			this.errorHandler("Error listing file tree:", err);
 		}
 	};
 }
