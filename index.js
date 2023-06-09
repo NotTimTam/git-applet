@@ -272,7 +272,7 @@ class GitHandler {
 			const fileTreeNodes = await Promise.all(
 				fileTree.map(async (item) => {
 					if (item.type === "dir") {
-						const children = await this.listFileTree(item.path);
+						const children = await this.getFileTree(item.path);
 						return { ...item, children };
 					}
 					return item;
