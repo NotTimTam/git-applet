@@ -9,7 +9,7 @@ A bare-bones applet that handles basic git commands on common git-hosting platfo
 Install by running:
 
 ```terminal
-npm install -g @nottimtam/git-applet
+npm install -g git-applet
 ```
 
 or:
