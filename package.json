@@ -1,5 +1,5 @@
 {
-	"name": "git-docs",
+	"name": "@nottimtam/git-docs",
 	"version": "1.0.1",
 	"description": "A bare-bones applet that handles basic git commands on common git-hosting platforms.",
 	"main": "index.js",
