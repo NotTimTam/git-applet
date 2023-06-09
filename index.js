@@ -262,7 +262,7 @@ class GitHandler {
 	 * @param {string} [path] The path of the directory to list the file tree. (optional, defaults to the root directory)
 	 * @returns {Promise<FileTreeNode>} A Promise that resolves with the file tree.
 	 */
-	listFileTree = async (path = "") => {
+	getFileTree = async (path = "") => {
 		try {
 			const { repositoryURL } = this;
 			const apiUrl = `${repositoryURL}/contents/${path}`;

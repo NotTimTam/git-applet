@@ -98,6 +98,16 @@ gitHandler.renameFile(
 );
 ```
 
+## getFileTree
+
+Get a JSON object listing all the files and directories in the repository.
+
+```js
+// ...
+
+gitHandler.getFileTree();
+```
+
 ## apiRequest
 
 Send a custom API request to the Git api.
