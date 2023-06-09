@@ -1,6 +1,6 @@
 {
-	"name": "@nottimtam/git-docs",
-	"version": "1.0.1",
+	"name": "@nottimtam/git-applet",
+	"version": "1.0.2",
 	"description": "A bare-bones applet that handles basic git commands on common git-hosting platforms.",
 	"main": "index.js",
 	"scripts": {

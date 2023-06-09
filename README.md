@@ -1,4 +1,4 @@
-# git-docs
+# git-applet
 
 A bare-bones applet that handles basic git commands on common git-hosting platforms.
 
@@ -9,22 +9,22 @@ A bare-bones applet that handles basic git commands on common git-hosting platfo
 Install by running:
 
 ```terminal
-npm install -g @nottimtam/git-docs
+npm install -g @nottimtam/git-applet
 ```
 
 or:
 
 ```terminal
-npm install -g https://github.com/NotTimTam/git-docs.git
+npm install -g https://github.com/NotTimTam/git-applet.git
 ```
 
 ## Importing into your project
 
 ```js
-const GD = require("git-docs");
+const GA = require("git-applet");
 
-const gitHandler = new GD(
-	GD.gitPlatforms.github, // The repository api path for your Git platform. Common ones are stored under GD.gitPlatforms.
+const gitHandler = new GA(
+	GA.gitPlatforms.github, // The repository api path for your Git platform. Common ones are stored under GA.gitPlatforms.
 	"my_example_token", // Your Git platform access token.
 	"NotTimTam", // The owner of the repository.
 	"my-repo" // The name of the repository.
