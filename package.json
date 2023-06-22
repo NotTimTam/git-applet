@@ -1,6 +1,6 @@
 {
 	"name": "git-applet",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "A bare-bones applet that handles basic Git commands on common Git-hosting platforms.",
 	"main": "index.js",
 	"scripts": {
@@ -18,4 +18,8 @@
 	"bugs": {
 		"url": "https://github.com/NotTimTam/git-applet/issues"
 	}
+	"keywords": [
+		"git",
+		"javascript",
+	],
 }
